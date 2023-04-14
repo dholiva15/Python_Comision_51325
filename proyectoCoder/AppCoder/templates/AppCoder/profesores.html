@@ -13,4 +13,57 @@
 
 <h1 style="background-color: black; color: white;"> Hola PROFES</h1>
 
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Agregar">
+</form>
+
+<table>
+
+    <thead>
+
+        <tr>
+            <th>ID</th>
+            <th>NOmbre</th>
+            <th>Apellido</th>
+            <th>email</th>
+            <th>Profesión</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for profesor in profesores %}
+
+        <tr>
+            <td>
+                {{ profesor.id }}
+
+            </td>
+
+            <td>
+                {{ profesor.nombre }}
+
+            </td>
+
+            <td>
+                {{ profesor.apellido }}
+
+            </td>
+
+            <td>
+                {{ profesor.email }}
+
+            </td>
+
+            <td>
+                {{ profesor.profesion }}
+
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
 {% endblock %}
