@@ -97,6 +97,17 @@ def entregables(request):
     
 def inicioApp(request):
      return render(request, "AppCoder/inicio.html")
+
+def busquedaComision(request):
+     return render(request, "AppCoder/busquedaComision.html")
+
+def buscar(request):
+     comision: request.GET['comision']
+     if comision !="":
+          cursos = Curso.objects.filter(comision__icontains=comision)
+          return render(request, "AppCoder/resultadoBusqueda.html", {"cursos": cursos})
+     else:
+          return render(request, "AppCoder/busquedaComision.html", {"mensaje":"ingrese una comision"})
     
 
 
