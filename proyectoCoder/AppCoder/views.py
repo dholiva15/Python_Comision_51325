@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from .models import Curso, Profesor
+from .models import *
 from django.http import HttpResponse
 from .forms import *
 
@@ -16,7 +16,28 @@ def crearCurso (request):
 
 
 def cursos (request):
-    return render(request, "AppCoder/cursos.html")
+     if request.method == "POST":
+          form = CursoForm(request.POST)
+          if form.is_valid():
+               nombre= form.cleaned_data['nombre']
+               comision = form.cleaned_data['comision']
+               curso = Curso()
+             
+               curso.nombre = nombre
+               curso.comision = comision
+               curso.save()
+               form = CursoForm()
+          else:
+               pass
+     
+     else:
+          form = CursoForm()
+
+          
+     cursos= Curso.objects.all()
+     context = {"cursos" : cursos, "form": form}
+
+     return render(request, "AppCoder/cursos.html", context)
 
 def profesores(request):
      if request.method == "POST":
@@ -40,7 +61,7 @@ def profesores(request):
           form = ProfesorForm()
 
           
-     profesores= Profesor.objects.all
+     profesores= Profesor.objects.filter(nombre__icontains="G").all()
      context ={"profesores" : profesores, "form": form}
      return render(request, "AppCoder/profesores.html", context)
    
@@ -49,7 +70,30 @@ def estudiantes(request):
   
 
 def entregables(request):
-     return render(request, "AppCoder/entregables.html")
+     if request.method == "POST":
+          form = EntregableForm(request.POST)
+          if form.is_valid():
+               nombre= form.cleaned_data['nombre']
+               fecha_entrega = form.cleaned_data['fecha_entrega']
+               entregado = form.cleaned_data['entregado']
+               entregable= Entregable()
+               entregable.nombre = nombre
+               entregable.fecha_entrega = fecha_entrega
+               entregable.entregado = entregado
+               
+               entregable.save()
+               form = EntregableForm()
+          else:
+               pass
+     
+     else:
+          form = EntregableForm()
+
+          
+     entregable= Entregable.objects.all()
+     context ={"entregable" : entregable, "form": form}
+
+     return render(request, "AppCoder/entregables.html", context)
     
 def inicioApp(request):
      return render(request, "AppCoder/inicio.html")
