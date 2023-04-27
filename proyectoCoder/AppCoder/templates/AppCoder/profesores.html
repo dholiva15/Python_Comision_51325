@@ -12,6 +12,7 @@
 {% block contenido_que_cambia %}
 
 <h1 style="background-color: black; color: white;"> Hola PROFES</h1>
+<h2>{{ mensaje }}</h2>
 
 <form action="" method="post">
     {% csrf_token %}
@@ -30,6 +31,8 @@
             <th>Apellido</th>
             <th>email</th>
             <th>Profesión</th>
+            <th style="color: red">OPCIONES</th>
+
         </tr>
     </thead>
 
@@ -60,6 +63,11 @@
             <td>
                 {{ profesor.profesion }}
 
+            </td>
+            <td>
+                <a class=" btn btn-danger" href="{% url 'eliminarProfesor' profesor.id %}">Eliminar</a>
+                <a class="btn btn-success" href="{% url 'editarProfesor'  profesor.id  %}">Editar</a>
+       
             </td>
         </tr>
         {% endfor %}

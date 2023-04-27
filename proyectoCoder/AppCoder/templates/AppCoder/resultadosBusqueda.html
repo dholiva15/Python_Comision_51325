@@ -11,19 +11,25 @@
 
 {% block contenido_que_cambia %}
 
-{% if cursos % }
+{% if cursos %}
 
-<h2>Listado de Cursos</h2>
-{% for curso in cursos %} 
-<h3>{{ curso.nombre}}  - {{curso.comision}} </h3>
-{% endfor %}  
+<h2>LISTADO DE CURSOS</h2>
+{% for curso in cursos %}
+
+<h3>{{ curso.nombre }} - {{ curso.comision }}</h3>
+
+{% endfor %}
 
 {% else %}
-<h2>No hay cursos</h2>
+
+<h2>NO HAY CURSOS</h2>
 
 {% endif %}
- 
 
+
+
+
+ 
 
 
 
