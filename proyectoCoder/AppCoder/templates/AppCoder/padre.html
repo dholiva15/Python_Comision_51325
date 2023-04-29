@@ -33,7 +33,9 @@
                 <a class="btn btn-primary" href="{% url 'entregables' %}">ENTREGABLES</a>
                 <a class="btn btn-primary" href="{% url 'profesores' %}">PROFESORES</a>
                 <p>Bienvenido: {{ user.username }} </p>
-                <a class="btn btn-primary" href="{% url 'logout' %}">logout</a>
+                <img src="{{ avatar }}" alt="Avatar" style="width:50px;height:50px;"/>
+                <a class="btn btn-secondary" href="{% url 'editarPerfil' %}">editar perfil</a>
+                <a class="btn btn-danger" href="{% url 'logout' %}">logout</a>
 
                 {% else %}
 
