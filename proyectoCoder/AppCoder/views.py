@@ -10,6 +10,13 @@ from django.contrib.auth.decorators import login_required
 
 # Create your views here.
 
+def inicioApp(request):
+     
+     return render(request, "AppCoder/inicio.html", {"avatar":obtenerAvatar(request), "mensaje": f"bienvenido a esta nueva aventura  {request.user}"})
+
+
+
+
 def crearCurso (request):
     nombre_curso= "Python"
     comision_curso= 51325
@@ -20,7 +27,7 @@ def crearCurso (request):
     return HttpResponse(respuesta)
 
 
-def cursos (request):
+def juegos(request):
      if request.method == "POST":
           form = CursoForm(request.POST)
           if form.is_valid():
@@ -42,7 +49,7 @@ def cursos (request):
      cursos= Curso.objects.all()
      context = {"cursos" : cursos, "form": form, "avatar":obtenerAvatar(request)}
 
-     return render(request, "AppCoder/cursos.html", context)
+     return render(request, "AppCoder/juegos.html", context)
 
 @login_required
 def profesores(request):
@@ -131,8 +138,7 @@ def entregables(request):
      return render(request, "AppCoder/entregables.html", context)
 
 
-def inicioApp(request):
-     return render(request, "AppCoder/inicio.html", {"avatar":obtenerAvatar(request)})
+
 
 login_required
 def busquedaComision(request):
